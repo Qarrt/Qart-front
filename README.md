@@ -1,2 +1,1 @@
-# Qart-front
-Frontend repositories
+Qart - Frontend

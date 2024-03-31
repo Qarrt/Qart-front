@@ -31,7 +31,7 @@ export default function Header() {
             alt="작품 등록"
             width={20}
             height={20}
-            className="flex"
+            className="flex mr-2"
           />
           작품 등록
         </Link>

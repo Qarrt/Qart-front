@@ -17,6 +17,12 @@ const config: Config = {
         'mid-gray': '#9E9E9E',
         '#F7F7F7': '#F7F7F7',
       },
+      width: {
+        inherit: 'inherit',
+      },
+      height: {
+        inherit: 'inherit',
+      },
     },
   },
   plugins: [],

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import SearchBar from './components/searchbar/SearchBar';
+import SearchBar from './_components/searchbar/SearchBar';
 import Link from 'next/link';
 
 export default function Header() {

@@ -6,12 +6,14 @@ export default function Header() {
   return (
     <header className="bg-white flex items-center mt-14 ">
       <div className="flex items-center ml-9 space-x-10 font-semibold">
-        <Image
-          src="/큐아트 로고.png"
-          alt="큐아트 로고"
-          width={86}
-          height={35}
-        />
+        <Link href="/">
+          <Image
+            src="/큐아트 로고.png"
+            alt="큐아트 로고"
+            width={86}
+            height={35}
+          />
+        </Link>
         <Link href="exhibitions">전시회</Link>
         <Link href="/artist">작가</Link>
         <Link href="/artwork">작품</Link>
@@ -29,7 +31,7 @@ export default function Header() {
             alt="작품 등록"
             width={20}
             height={20}
-            className="fill-white flex"
+            className="flex"
           />
           작품 등록
         </Link>

@@ -27,7 +27,7 @@ export default function Header() {
           className="flex bg-black text-white rounded-full py-2 px-4"
         >
           <Image
-            src="/qrcode.png"
+            src="/qrcode.svg"
             alt="작품 등록"
             width={20}
             height={20}

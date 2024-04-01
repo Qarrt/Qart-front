@@ -23,7 +23,7 @@ export default function Header() {
         <SearchBar />
         <Link href="/login">로그인</Link>
         <Link
-          href="/register"
+          href="/upload-art"
           className="flex bg-black text-white rounded-full py-2 px-4"
         >
           <Image

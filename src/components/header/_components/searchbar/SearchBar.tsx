@@ -18,7 +18,7 @@ export default function SearchBar() {
   return (
     <div className="max-w-lg mx-auto">
       <form
-        className="flex items-center w-[326px] rounded-full bg-[#F7F7F7] shadow "
+        className="flex items-center w-[326px] rounded-full bg-[#F7F7F7] "
         onSubmit={handleSubmit}
       >
         <button type="submit" className="flex items-center">

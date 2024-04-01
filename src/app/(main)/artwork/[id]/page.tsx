@@ -26,11 +26,16 @@ export default function ArtworkPage() {
             <div className="flex font-semibold text-[#ACACAC]">
               정보
               <span className="font-bold ml-[18px] text-black">
-                캔버스에 유채 38x46cm
+                캔버스에 유채
               </span>
             </div>
             <div className="flex font-semibold text-[#ACACAC]">
-              년도 <span className="font-bold ml-[18px] text-black">2022</span>
+              크기
+              <span className="font-bold ml-[18px] text-black">38x46cm</span>
+            </div>
+            <div className="flex font-semibold text-[#ACACAC]">
+              년도
+              <span className="font-bold ml-[18px] text-black">2022</span>
             </div>
           </div>
         </div>

@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .number-input-hide-buttons {
+    /* 웹킷 기반 브라우저를 위한 스타일 */
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    /* 모질라 기반 브라우저를 위한 스타일 */
+    & {
+      -moz-appearance: textfield;
+    }
+  }
+}
+
 .custom-quill .ql-toolbar {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;

@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 export default function UploadHeader() {
   const router = useRouter();
   return (
-    <header className="bg-white flex items-center mt-14 ">
+    <header className="bg-white flex items-center h-[147px]">
       <div className="flex items-center ml-9 space-x-10 font-semibold">
         <Link href="/">
           <Image

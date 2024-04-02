@@ -1,3 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .number-input-hide-buttons {
+    /* 웹킷 기반 브라우저를 위한 스타일 */
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    /* 모질라 기반 브라우저를 위한 스타일 */
+    & {
+      -moz-appearance: textfield;
+    }
+  }
+}
+
+.custom-quill .ql-toolbar {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.custom-quill .ql-container {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.custom-quill .ql-editor {
+  padding: 30px;
+}
+
+/* react-quill placeholder 설정*/
+.custom-quill .ql-editor::before {
+  color: #c7c7c7;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 16px;
+  padding-left: 13px;
+  pointer-events: none;
+  opacity: 0.5;
+}

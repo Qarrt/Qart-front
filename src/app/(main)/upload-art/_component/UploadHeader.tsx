@@ -1,8 +1,11 @@
-import Image from 'next/image';
-import SearchBar from './_components/searchbar/SearchBar';
-import Link from 'next/link';
+'use client';
 
-export default function Header() {
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
+export default function UploadHeader() {
+  const router = useRouter();
   return (
     <header className="bg-white flex items-center mt-14 ">
       <div className="flex items-center ml-9 space-x-10 font-semibold">
@@ -14,14 +17,15 @@ export default function Header() {
             height={35}
           />
         </Link>
-        <Link href="exhibitions">전시회</Link>
-        <Link href="/artist">작가</Link>
-        <Link href="/artwork">작품</Link>
       </div>
 
       <div className="flex items-center space-x-4 ml-auto mr-16 gap-4">
-        <SearchBar />
-        <Link href="/login">로그인</Link>
+        <Link
+          href="/"
+          className="flex bg-white text-black rounded-full border-[1px] border-black py-2 px-4"
+        >
+          임시저장
+        </Link>
         <Link
           href="/upload-art"
           className="flex bg-black text-white rounded-full py-2 px-4"

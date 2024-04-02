@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.custom-quill .ql-toolbar {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.custom-quill .ql-container {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.custom-quill .ql-editor {
+  padding: 30px;
+}
+
+/* react-quill placeholder 설정*/
+.custom-quill .ql-editor::before {
+  color: #c7c7c7;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 16px;
+  padding-left: 13px;
+  pointer-events: none;
+  opacity: 0.5;
+}

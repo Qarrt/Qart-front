@@ -3,7 +3,6 @@
 import '../../styles/globals.css';
 import Image from 'next/image';
 import ReactQuillTemplate from './_component/ReactQuillTemplate';
-import Layout from '../layout';
 
 export default function UploadArtPage() {
   return (

@@ -1,3 +1,5 @@
+//pagesConfig에 페이지 경로 필요시 추가 후 사용
+
 interface PageConfig {
   headerComponent: string;
   title: string;

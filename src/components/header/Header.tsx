@@ -1,11 +1,12 @@
+'use client';
 import Image from 'next/image';
 import SearchBar from './_components/searchbar/SearchBar';
 import Link from 'next/link';
 
 export default function Header() {
   return (
-    <header className="bg-white flex items-center mt-14 ">
-      <div className="flex items-center ml-9 space-x-10 font-semibold">
+    <header className="bg-white flex items-center align-center h-[147px]">
+      <div className="flex items-center space-x-10 font-semibold ml-9">
         <Link href="/">
           <Image
             src="/큐아트 로고.png"
@@ -19,15 +20,15 @@ export default function Header() {
         <Link href="/artwork">작품</Link>
       </div>
 
-      <div className="flex items-center space-x-4 ml-auto mr-16 gap-4">
+      <div className="flex items-center gap-4 ml-auto mr-16 space-x-4">
         <SearchBar />
         <Link href="/login">로그인</Link>
         <Link
-          href="/register"
-          className="flex bg-black text-white rounded-full py-2 px-4"
+          href="/upload-art"
+          className="flex px-4 py-2 text-white bg-black rounded-full"
         >
           <Image
-            src="/qrcode.png"
+            src="/qrcode.svg"
             alt="작품 등록"
             width={20}
             height={20}

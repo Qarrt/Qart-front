@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Tab from '../_component/Tab';
 import ArtworkTab from '../_component/ArtworkTab';
+import Layout from '../../layout';
 
 export default function ArtworkPage() {
   return (
@@ -12,11 +13,11 @@ export default function ArtworkPage() {
         <Image src="/artA.png" alt="artA" width={395} height={395} />
       </div>
       <div className="flex justify-center mt-16">
-        <div className="flex  flex-col">
+        <div className="flex flex-col">
           <div className="flex text-[#404040] font-bold text-4xl">
             촬랑촬랑, 저녁, 물성적 사태
           </div>
-          <div className=" mt-12">
+          <div className="mt-12 ">
             <div className="flex font-semibold text-[#ACACAC]">
               작가
               <span className="text-[#404040] font-bold ml-[18px]">

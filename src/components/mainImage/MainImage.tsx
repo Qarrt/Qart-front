@@ -45,8 +45,9 @@ export default function MainImage() {
           id="slider"
           className="flex w-full h-full scroll overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide"
         >
-          {mainImages.map((_, i) => (
+          {mainImages.map((item, i) => (
             <Image
+            key={`${item}-${i}`}
               id="mainImage"
               src={mainPicture}
               alt=""

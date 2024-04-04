@@ -40,8 +40,8 @@ export default function LocalExhibition() {
         <button>더보기</button>
       </div>
       <div className="w-full flex gap-5 justify-start">
-        {localName.map((local) => (
-          <Link href={`/${local}`}>
+        {localName.map((local, i) => (
+          <Link href={`/${local}`} key={`${local}-${i}`}>
             <div className="w-16 h-7 font-semibold rounded-3xl flex justify-center items-center bg-slate-300">
               <span>{local}</span>
             </div>
@@ -49,8 +49,8 @@ export default function LocalExhibition() {
         ))}
       </div>
       <div className="flex justify-start w-full h-full gap-12 relative scroll overflow-x-scroll whitespace-nowrap scroll-smooth">
-        {localExhibition.map((item) => (
-          <div className="flex flex-col gap-[22px]">
+        {localExhibition.map((item, i) => (
+          <div className="flex flex-col gap-[22px]" key={`${item}-${i}`}>
             <Image src={item.src} alt="" width={347.2} height={260.8} />
             <div className="flex flex-col gap-[16.5px]">
               <span className="text-[24px] font-semibold">

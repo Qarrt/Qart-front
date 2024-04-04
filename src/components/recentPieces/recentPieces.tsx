@@ -17,18 +17,18 @@ export default function RecentPieces (){
         newDisplayed4,
       ];
     return(
-        <div className="mt-16 w-max h-[398.6px] flex flex-col gap-7 px-6 bg-slate-200">
+        <div className="mt-16 w-max h-[398.6px] flex flex-col gap-7 px-6">
         <div className="w-[1368px] flex justify-between items-center">
           <span className="text-2xl font-bold">최신 작품 리스트</span>
           <Link href="/">더보기</Link>
         </div>
         <div
           id="slider"
-          className="flex justify-start gap-5 h-[398.6px] scroll overflow-x-scroll whitespace-nowrap scroll-smooth"
+          className="flex justify-start gap-5 h-[398.6px] scroll overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide"
         >
-          {newDisplayedArr.map((_, i) => (
+          {newDisplayedArr.map((item, i) => (
             <div
-              key={i}
+              key={`${item}-${i}`}
               className="w-[347.2px] h-[337.6px] rounded-xl relative"
             >
               <Image src={newDisplayed2} alt="" width={347.2} height={260.8} />

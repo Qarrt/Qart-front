@@ -12,7 +12,7 @@ export default function RecentlyHot() {
   return (
     <div className="flex justify-center gap-[24px] mt-[58px] px-6 h-[116px]">
       {bottomNavImages.map((item, i) => (
-        <Link href="/">
+        <Link href="/" key={`${item}-${i}`}>
           <div className="flex px-7 items-center w-[327px] h-[116px] bg-[#F7F7F7] rounded-xl ">
             <div className="flex items-center justify-around gap-[19px] width-[232px] height-[94px]">
               <Image

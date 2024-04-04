@@ -43,8 +43,8 @@ export default function NewArtist() {
         <button>더보기</button>
       </div>
       <div className="flex justify-center items-center gap-[40px] w-screen h-[388px] bg-[#F7F7F7]">
-        {newPainterArr.map((item) => (
-          <div className="flex flex-col">
+        {newPainterArr.map((item, i) => (
+          <div className="flex flex-col" key={`${item}-${i}`}>
             <Image src={item.src} alt="" width={186.5} height={186.5} />
             <div className="mt-[19px] flex flex-col gap-[8px]">
               <span className="text-[24px] font-semibold ">{item.name}</span>

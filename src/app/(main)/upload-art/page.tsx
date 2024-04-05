@@ -29,7 +29,7 @@ export default function UploadArtPage() {
         router.push('/');
         alert('작품등록에 성공하였습니다.');
       },
-      onError: (error) => {
+      onError: () => {
         alert('작품등록에 실패하였습니다.');
       },
     });
@@ -87,7 +87,11 @@ export default function UploadArtPage() {
               <span className="text-[20px] text-[#595959] leading-[30px] font-semibold">
                 작품이미지
               </span>
-              <div className="flex w-[424px] h-[424px] bg-[#C7C7C7] items-center justify-center rounded-[40px] mt-[12px]">
+              <div
+                className={`flex w-[424px] h-[424px] items-center justify-center rounded-[40px] mt-[12px] ${
+                  artData.file ? '' : 'bg-[#C7C7C7]'
+                }`}
+              >
                 <input
                   type="file"
                   ref={fileInputRef}
@@ -95,12 +99,21 @@ export default function UploadArtPage() {
                   style={{ display: 'none' }}
                 />
                 <div onClick={triggerFileInput} style={{ cursor: 'pointer' }}>
-                  <Image
-                    src="/EmptyImage.svg"
-                    alt="EmptyImage"
-                    width={75}
-                    height={56}
-                  ></Image>
+                  {artData.file ? (
+                    <Image
+                      src={URL.createObjectURL(artData.file)}
+                      alt="ArtImage"
+                      width={424}
+                      height={424}
+                    ></Image>
+                  ) : (
+                    <Image
+                      src="/EmptyImage.svg"
+                      alt="EmptyImage"
+                      width={75}
+                      height={56}
+                    />
+                  )}
                 </div>
               </div>
             </div>

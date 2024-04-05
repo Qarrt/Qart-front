@@ -5,7 +5,7 @@ import {
   UseMutationResult,
   useMutation,
 } from '@tanstack/react-query';
-import { ArtData } from '@/types/art';
+import { ArtData } from '@/types/Art';
 
 const uploadArt = async (
   formData: FormData,

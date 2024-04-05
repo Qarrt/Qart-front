@@ -15,7 +15,7 @@ const pagesConfig: PagesConfig = {
     title: '홈 페이지',
   },
   '/upload-art': {
-    headerComponent: 'UploadHeader',
+    headerComponent: null,
     title: '업로드 페이지',
   },
   '/artwork/[id]': {

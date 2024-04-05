@@ -8,6 +8,6 @@ export interface ArtData {
   exhibited: boolean;
   authorComment: string;
   description: string;
-  file?: File;
+  file?: File | null | undefined;
   image?: string;
 }

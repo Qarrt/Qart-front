@@ -1,9 +1,35 @@
 'use client';
 
+import { useUploadArt } from '@/hooks/useUploadArt';
+import { ArtData } from '@/types/Art';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 
-export default function UploadHeader() {
+export default function UploadHeader({ onSubmit }: { onSubmit: () => void }) {
+  const [artData, setArtData] = useState<ArtData>({
+    title: '',
+    material: '',
+    year: 0,
+    width: 0,
+    height: 0,
+    exhibited: false,
+    authorComment: '',
+    description: '',
+    file: null,
+  });
+  const uploadMutation = useUploadArt();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    uploadMutation.mutate(artData, {
+      onSuccess: () => {
+        alert('작품등록에 성공하였습니다.');
+      },
+      onError: () => {
+        alert('작품등록에 실패하였습니다.');
+      },
+    });
+  };
   return (
     <>
       <header className="bg-white flex items-center h-[147px]">
@@ -26,8 +52,8 @@ export default function UploadHeader() {
           >
             임시저장
           </Link>
-          <Link
-            href="/upload-art"
+          <button
+            onClick={handleSubmit}
             className="flex px-4 py-2 text-white bg-black rounded-full"
           >
             <Image
@@ -39,7 +65,7 @@ export default function UploadHeader() {
               priority
             />
             작품 등록
-          </Link>
+          </button>
         </div>
       </header>
     </>

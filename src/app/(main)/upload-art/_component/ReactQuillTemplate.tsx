@@ -44,11 +44,14 @@ const formats = [
 export default function ReactQuillTemplate({
   placeholder,
   height,
+  onChange,
+  value,
 }: {
   placeholder: string;
   height: string;
+  onChange: (content: string) => void;
+  value: string;
 }) {
-  const [quillValue, setQuillValue] = useState('');
   const { register, handleSubmit, setValue, trigger } = useForm({
     mode: 'onChange',
   });
@@ -63,12 +66,12 @@ export default function ReactQuillTemplate({
     editor: any,
   ) => {
     const sanitizedContent = DOMPurify.sanitize(editor.getHTML());
-    // 'content' 매개변수에는 에디터의 현재 HTML 내용이 담김
     setValue(
       'contents',
       sanitizedContent === '<p><br></p>' ? '' : sanitizedContent,
     );
     trigger('contents'); // DOMPurify를 사용하여 공격에 취약한 코드를 제거
+    onChange(sanitizedContent);
   };
   useEffect(() => {
     register('contents');
@@ -83,7 +86,7 @@ export default function ReactQuillTemplate({
           theme="snow"
           modules={modules}
           formats={formats}
-          value={quillValue || ''}
+          value={value || ''}
           onChange={handleQuillChange}
           placeholder={placeholder}
         />

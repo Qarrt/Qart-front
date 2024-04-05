@@ -2,11 +2,13 @@
 
 import Header from '@/components/header/Header';
 import UploadHeader from '@/app/(main)/upload-art/_component/UploadHeader';
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import pagesConfig from '@/constants/pagesConfig';
 import { usePathname } from 'next/navigation';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useUploadArt } from '@/hooks/useUploadArt';
+import { ArtData } from '@/types/Art';
 
 interface LayoutProps {
   children?: ReactNode;
@@ -21,6 +23,28 @@ export default function Layout({ children }: LayoutProps) {
   const queryClient = new QueryClient();
   let currentPageConfig = pagesConfig[pathname] || {};
 
+  const uploadMutation = useUploadArt();
+  const [artData, setArtData] = useState<ArtData>({
+    title: '',
+    material: '',
+    year: 0,
+    width: 0,
+    height: 0,
+    exhibited: false,
+    authorComment: '',
+    description: '',
+    file: null,
+  });
+  const handleSubmit = async () => {
+    uploadMutation.mutate(artData, {
+      onSuccess: () => {
+        alert('작품등록에 성공하였습니다.');
+      },
+      onError: () => {
+        alert('작품등록에 실패하였습니다.');
+      },
+    });
+  };
   // 동적 경로 처리
   if (!currentPageConfig.headerComponent) {
     Object.keys(pagesConfig).forEach((key) => {
@@ -37,7 +61,7 @@ export default function Layout({ children }: LayoutProps) {
       headerComponent = <Header />;
       break;
     case 'UploadHeader':
-      headerComponent = <UploadHeader />;
+      headerComponent = <UploadHeader onSubmit={handleSubmit} />;
       break;
     default:
       break;

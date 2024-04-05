@@ -6,6 +6,8 @@ import ReactQuillTemplate from './_component/ReactQuillTemplate';
 import { useRef, useState } from 'react';
 import { useUploadArt } from '@/hooks/useUploadArt';
 import { ArtData } from '@/types/Art';
+import UploadHeader from './_component/UploadHeader';
+import { useRouter } from 'next/navigation';
 
 export default function UploadArtPage() {
   const [artData, setArtData] = useState<ArtData>({
@@ -19,14 +21,15 @@ export default function UploadArtPage() {
     description: '',
     file: null,
   });
+  const router = useRouter();
   const uploadMutation = useUploadArt();
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     uploadMutation.mutate(artData, {
       onSuccess: () => {
+        router.push('/');
         alert('작품등록에 성공하였습니다.');
       },
-      onError: () => {
+      onError: (error) => {
         alert('작품등록에 실패하였습니다.');
       },
     });
@@ -45,10 +48,18 @@ export default function UploadArtPage() {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setArtData({
-      ...artData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value, type, checked } = e.target;
+    if (type === 'radio') {
+      setArtData((prev) => ({
+        ...prev,
+        [name]: value === 'true' ? true : false,
+      }));
+    } else {
+      setArtData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
   };
   const fileInputRef = useRef<HTMLInputElement>(null);
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,6 +76,7 @@ export default function UploadArtPage() {
   };
   return (
     <>
+      <UploadHeader onSubmit={() => handleSubmit()} />
       <h2 className="flex justify-center mt-[89px] text-3xl font-bold">
         작품 등록
       </h2>
@@ -97,6 +109,7 @@ export default function UploadArtPage() {
                 작품명
               </span>
               <input
+                name="title"
                 type="text"
                 placeholder="작품명"
                 className="w-[424px] h-[64px] border-[1px] border-[#C7C7C7] mt-[12px] rounded-[10px] placeholder-[#C7C7C7] pl-[31px] font-medium"
@@ -106,6 +119,7 @@ export default function UploadArtPage() {
                 재료
               </span>
               <input
+                name="material"
                 type="text"
                 placeholder="캔버스에 유채"
                 className="w-[424px] h-[64px] border-[1px] border-[#C7C7C7] mt-[12px] rounded-[10px] placeholder-[#C7C7C7] pl-[31px] font-medium"
@@ -115,6 +129,7 @@ export default function UploadArtPage() {
                 제작년도
               </span>
               <input
+                name="year"
                 type="text"
                 placeholder="2024"
                 className="w-[424px] h-[64px] border-[1px] border-[#C7C7C7] mt-[12px] rounded-[10px] placeholder-[#C7C7C7] pl-[31px] font-medium"
@@ -167,7 +182,8 @@ export default function UploadArtPage() {
                   <label className="flex items-center">
                     <input
                       type="radio"
-                      name="options"
+                      name="exhibited"
+                      value="true"
                       className="sr-only radio peer"
                       onChange={handleChange}
                       defaultChecked
@@ -178,7 +194,8 @@ export default function UploadArtPage() {
                   <label className="flex items-center ml-[19px]">
                     <input
                       type="radio"
-                      name="options"
+                      name="exhibited"
+                      value="false"
                       className="sr-only radio peer"
                       onChange={handleChange}
                     />

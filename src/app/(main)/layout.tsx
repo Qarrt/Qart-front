@@ -23,28 +23,6 @@ export default function Layout({ children }: LayoutProps) {
   const queryClient = new QueryClient();
   let currentPageConfig = pagesConfig[pathname] || {};
 
-  const uploadMutation = useUploadArt();
-  const [artData, setArtData] = useState<ArtData>({
-    title: '',
-    material: '',
-    year: 0,
-    width: 0,
-    height: 0,
-    exhibited: false,
-    authorComment: '',
-    description: '',
-    file: null,
-  });
-  const handleSubmit = async () => {
-    uploadMutation.mutate(artData, {
-      onSuccess: () => {
-        alert('작품등록에 성공하였습니다.');
-      },
-      onError: () => {
-        alert('작품등록에 실패하였습니다.');
-      },
-    });
-  };
   // 동적 경로 처리
   if (!currentPageConfig.headerComponent) {
     Object.keys(pagesConfig).forEach((key) => {
@@ -60,8 +38,8 @@ export default function Layout({ children }: LayoutProps) {
     case 'Header':
       headerComponent = <Header />;
       break;
-    case 'UploadHeader':
-      headerComponent = <UploadHeader onSubmit={handleSubmit} />;
+    case null:
+      null;
       break;
     default:
       break;

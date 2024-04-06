@@ -1,12 +1,9 @@
 import Link from 'next/link';
-import { forwardRef } from 'react';
-interface UserIconDropdownProps {
-  className: string;
-  onClick: () => void;
-}
-const UserIconDropdown = forwardRef<HTMLDivElement, UserIconDropdownProps>(
-  ({ className, onClick }, ref) => {
-    const combinedClassName = `absolute right-0 z-10 mt-2 w-[200px] origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none top-[103px]${
+import { forwardRef, ForwardedRef } from 'react';
+
+const UserIconDropdown = forwardRef<HTMLDivElement, { className?: string }>(
+  ({ className }, ref: ForwardedRef<HTMLDivElement>) => {
+    const combinedClassName = `absolute right-0 z-10 mt-2 w-[200px] origin-top-right rounded-[12px] bg-white shadow-lg ring-2 ring-black ring-opacity-5 focus:outline-none top-[100px]${
       className || ''
     }`;
     return (
@@ -21,7 +18,7 @@ const UserIconDropdown = forwardRef<HTMLDivElement, UserIconDropdownProps>(
         <div className="py-1" role="none">
           <Link
             href="#"
-            className="text-gray-700 block px-4 py-2 text-sm"
+            className="text-[#595959] block px-4 py-2 text-[16px]"
             role="menuitem"
             tabIndex={-1}
             id="menu-item-0"
@@ -30,7 +27,7 @@ const UserIconDropdown = forwardRef<HTMLDivElement, UserIconDropdownProps>(
           </Link>
           <Link
             href="#"
-            className="text-gray-700 block px-4 py-2 text-sm"
+            className="text-[#595959] block px-4 py-2 text-[16px]"
             role="menuitem"
             tabIndex={-1}
             id="menu-item-1"
@@ -40,7 +37,7 @@ const UserIconDropdown = forwardRef<HTMLDivElement, UserIconDropdownProps>(
 
           <Link
             href="#"
-            className="text-gray-700 block px-4 py-2 text-sm"
+            className="text-[#595959] block px-4 py-2 text-[16px]"
             role="menuitem"
             tabIndex={-1}
             id="menu-item-2"
@@ -49,7 +46,7 @@ const UserIconDropdown = forwardRef<HTMLDivElement, UserIconDropdownProps>(
           </Link>
           <Link
             href="#"
-            className="text-gray-700 block px-4 py-2 text-sm"
+            className="text-[#595959] block px-4 py-2 text-[16px]"
             role="menuitem"
             tabIndex={-1}
             id="menu-item-3"
@@ -59,7 +56,7 @@ const UserIconDropdown = forwardRef<HTMLDivElement, UserIconDropdownProps>(
 
           <Link
             href="#"
-            className="text-gray-700 block px-4 py-2 text-sm"
+            className="text-[#595959] block px-4 py-2 text-[16px]"
             role="menuitem"
             tabIndex={-1}
             id="menu-item-4"

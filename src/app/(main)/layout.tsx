@@ -1,14 +1,11 @@
 'use client';
 
-import Header from '@/components/header/Header';
-import UploadHeader from '@/app/(main)/upload-art/_component/UploadHeader';
+import BeforeLoginHeader from '@/components/header/BeforeLoginHeader';
 import { ReactNode, useState } from 'react';
 import pagesConfig from '@/constants/pagesConfig';
 import { usePathname } from 'next/navigation';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useUploadArt } from '@/hooks/useUploadArt';
-import { ArtData } from '@/types/Art';
 
 interface LayoutProps {
   children?: ReactNode;
@@ -35,13 +32,11 @@ export default function Layout({ children }: LayoutProps) {
   // 헤더 컴포넌트 선택 및 렌더링
   let headerComponent = null;
   switch (currentPageConfig.headerComponent) {
-    case 'Header':
-      headerComponent = <Header />;
+    case 'BeforeLoginHeader':
+      headerComponent = <BeforeLoginHeader />;
       break;
     case null:
-      null;
-      break;
-    default:
+      headerComponent = null;
       break;
   }
 

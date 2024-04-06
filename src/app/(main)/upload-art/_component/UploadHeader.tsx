@@ -1,9 +1,11 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function UploadHeader() {
+export default function UploadHeader({
+  onSubmit,
+}: {
+  onSubmit: (e: React.FormEvent) => void;
+}) {
   return (
     <>
       <header className="bg-white flex items-center h-[147px]">
@@ -22,24 +24,26 @@ export default function UploadHeader() {
         <div className="flex items-center gap-4 ml-auto mr-16 space-x-4">
           <Link
             href="/"
+            passHref
             className="flex bg-white text-black rounded-full border-[1px] border-black py-2 px-4"
           >
             임시저장
           </Link>
-          <Link
-            href="/upload-art"
+          <button
+            onClick={onSubmit}
             className="flex px-4 py-2 text-white bg-black rounded-full"
           >
-            <Image
-              src="/qrcode.svg"
-              alt="작품 등록"
-              width={20}
-              height={20}
-              className="flex mr-2"
-              priority
-            />
+            <span className="flex mr-2">
+              <Image
+                src="/qrcode.svg"
+                alt="작품 등록"
+                width={20}
+                height={20}
+                priority
+              />
+            </span>
             작품 등록
-          </Link>
+          </button>
         </div>
       </header>
     </>

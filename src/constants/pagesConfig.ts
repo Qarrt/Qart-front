@@ -1,7 +1,7 @@
 //pagesConfig에 페이지 경로 필요시 추가 후 사용
 
 interface PageConfig {
-  headerComponent: string;
+  headerComponent: string | null;
   title: string;
 }
 
@@ -15,7 +15,7 @@ const pagesConfig: PagesConfig = {
     title: '홈 페이지',
   },
   '/upload-art': {
-    headerComponent: 'UploadHeader',
+    headerComponent: null,
     title: '업로드 페이지',
   },
   '/artwork/[id]': {

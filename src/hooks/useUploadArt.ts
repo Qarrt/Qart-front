@@ -5,25 +5,12 @@ import {
   UseMutationResult,
   useMutation,
 } from '@tanstack/react-query';
-
-interface ArtData {
-  tempPieceId?: string;
-  title: string;
-  material: string;
-  year: number;
-  width: number;
-  height: number;
-  exhibited: boolean;
-  authorComment: string;
-  description: string;
-  file?: File;
-  image?: string;
-}
+import { ArtData } from '@/types/Art';
 
 const uploadArt = async (
   formData: FormData,
   axiosInstance: AxiosInstance,
-): Promise<any> => {
+): Promise<ArtData> => {
   const response = await axiosInstance.post('/pieces', formData, {
     headers: {
       'Content-Type': 'multipart/form-data',

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import SearchBar from './_components/searchbar/SearchBar';
 import Link from 'next/link';
 
-export default function Header() {
+export default function BeforeLoginHeader() {
   return (
     <header className="bg-white flex items-center align-center h-[147px]">
       <div className="flex items-center space-x-10 font-semibold ml-9">

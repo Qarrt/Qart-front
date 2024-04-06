@@ -10,7 +10,7 @@ import { ArtData } from '@/types/Art';
 const uploadArt = async (
   formData: FormData,
   axiosInstance: AxiosInstance,
-): Promise<any> => {
+): Promise<ArtData> => {
   const response = await axiosInstance.post('/pieces', formData, {
     headers: {
       'Content-Type': 'multipart/form-data',

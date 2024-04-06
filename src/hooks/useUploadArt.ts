@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios';
-import { useAxios } from '@/utils/axios';
+import { useAxios } from '@/lib/axios';
 import {
   UseMutationOptions,
   UseMutationResult,

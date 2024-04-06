@@ -9,12 +9,15 @@ export default function AfterLoginHeader() {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const toggleDropdown = () => setDropdownVisible(!dropdownVisible);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const toggleButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (
         dropdownRef.current &&
-        !dropdownRef.current.contains(e.target as Node)
+        !dropdownRef.current.contains(e.target as Node) &&
+        toggleButtonRef.current &&
+        !toggleButtonRef.current.contains(e.target as Node)
       ) {
         setDropdownVisible(false);
       }
@@ -24,7 +27,7 @@ export default function AfterLoginHeader() {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [dropdownRef]);
+  }, [dropdownRef, toggleButtonRef]);
   return (
     <header className=" relative bg-white flex items-center align-center h-[147px]">
       <div className="flex items-center space-x-10 font-semibold ml-9">
@@ -43,13 +46,17 @@ export default function AfterLoginHeader() {
 
       <div className="flex items-center gap-4 ml-auto mr-16 space-x-4">
         <SearchBar />
-        <button onClick={toggleDropdown} className="relative z-10">
+        <button
+          ref={toggleButtonRef}
+          onClick={toggleDropdown}
+          className="relative z-10"
+        >
           <Image src="/userIcon.svg" alt="userIcon" width={46} height={46} />
         </button>
         {dropdownVisible && (
           <UserIconDropdown
             ref={dropdownRef}
-            className="absolute mt-2 top-[110px] right-[40px]"
+            className="absolute mt-2 top-[110px] right-[60px]"
           />
         )}
         <Link

@@ -1,8 +1,11 @@
 import Link from 'next/link';
-import { forwardRef, ForwardedRef } from 'react';
-
-const UserIconDropdown = forwardRef<HTMLDivElement, { className?: string }>(
-  ({ className }, ref: ForwardedRef<HTMLDivElement>) => {
+import { forwardRef } from 'react';
+interface UserIconDropdownProps {
+  className: string;
+  onClick: () => void;
+}
+const UserIconDropdown = forwardRef<HTMLDivElement, UserIconDropdownProps>(
+  ({ className, onClick }, ref) => {
     const combinedClassName = `absolute right-0 z-10 mt-2 w-[200px] origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none top-[103px]${
       className || ''
     }`;

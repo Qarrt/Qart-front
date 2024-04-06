@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import SearchBar from './_components/searchbar/SearchBar';
+import SearchBar from './_components/SearchBar';
 import Link from 'next/link';
 
 export default function BeforeLoginHeader() {

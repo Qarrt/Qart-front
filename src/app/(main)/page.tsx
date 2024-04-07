@@ -11,8 +11,6 @@ import LocalExhibition from '@/components/localExhibition/LocalExhibition';
 export default function Home() {
   return (
     <div className="w-full overflow-hidden">
-      {/*  상단 Nav */}
-      <BeforeLoginHeader />
       {/* 메인 이미지 */}
       <MainImage />
       {/* 하단 nav */}

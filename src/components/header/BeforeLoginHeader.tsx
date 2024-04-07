@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import SearchBar from './_components/searchbar/SearchBar';
+import SearchBar from './_components/SearchBar';
 import Link from 'next/link';
 
 export default function BeforeLoginHeader() {
@@ -15,7 +15,7 @@ export default function BeforeLoginHeader() {
             height={35}
           />
         </Link>
-        <Link href="exhibitions">전시회</Link>
+        <Link href="exhibition">전시회</Link>
         <Link href="/artist">작가</Link>
         <Link href="/artwork">작품</Link>
       </div>
@@ -28,7 +28,7 @@ export default function BeforeLoginHeader() {
           className="flex px-4 py-2 text-white bg-black rounded-full"
         >
           <Image
-            src="/qrcode.svg"
+            src="/svg/qrcode.svg"
             alt="작품 등록"
             width={20}
             height={20}

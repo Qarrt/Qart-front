@@ -108,7 +108,7 @@ export default function UploadArtPage() {
                     ></Image>
                   ) : (
                     <Image
-                      src="/EmptyImage.svg"
+                      src="/svg/EmptyImage.svg"
                       alt="EmptyImage"
                       width={75}
                       height={56}

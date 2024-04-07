@@ -35,7 +35,7 @@ export default function UploadHeader({
           >
             <span className="flex mr-2">
               <Image
-                src="/qrcode.svg"
+                src="/svg/qrcode.svg"
                 alt="작품 등록"
                 width={20}
                 height={20}

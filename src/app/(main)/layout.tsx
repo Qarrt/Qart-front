@@ -4,8 +4,8 @@ import BeforeLoginHeader from '@/components/header/BeforeLoginHeader';
 import { ReactNode, useState } from 'react';
 import pagesConfig from '@/constants/pagesConfig';
 import { usePathname } from 'next/navigation';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import RemoteButton from '@/components/_components/RemoteButton';
 
 interface LayoutProps {
   children?: ReactNode;
@@ -44,7 +44,7 @@ export default function Layout({ children }: LayoutProps) {
     <QueryClientProvider client={queryClient}>
       {headerComponent}
       <main>{children}</main>
-      <ReactQueryDevtools initialIsOpen={false} />
+      <RemoteButton />
     </QueryClientProvider>
   );
 }

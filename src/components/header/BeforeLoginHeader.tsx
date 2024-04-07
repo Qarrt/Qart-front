@@ -15,7 +15,7 @@ export default function BeforeLoginHeader() {
             height={35}
           />
         </Link>
-        <Link href="exhibitions">전시회</Link>
+        <Link href="exhibition">전시회</Link>
         <Link href="/artist">작가</Link>
         <Link href="/artwork">작품</Link>
       </div>

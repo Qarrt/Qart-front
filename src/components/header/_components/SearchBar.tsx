@@ -23,7 +23,7 @@ export default function SearchBar() {
       >
         <button type="submit" className="flex items-center">
           <img
-            src="/search.svg"
+            src="/svg/search.svg"
             alt="검색"
             className="w-6 h-6 text-gray-600 ml-3 -mr-3 z-50"
           />

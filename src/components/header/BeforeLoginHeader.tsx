@@ -28,7 +28,7 @@ export default function BeforeLoginHeader() {
           className="flex px-4 py-2 text-white bg-black rounded-full"
         >
           <Image
-            src="/qrcode.svg"
+            src="/svg/qrcode.svg"
             alt="작품 등록"
             width={20}
             height={20}

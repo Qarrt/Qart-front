@@ -1,3 +1,4 @@
+'use client';
 import { throttle } from 'lodash';
 import Image from 'next/image';
 import mainPicture from '/public/mainPicture.png';
@@ -47,7 +48,7 @@ export default function MainImage() {
         >
           {mainImages.map((item, i) => (
             <Image
-            key={`${item}-${i}`}
+              key={`${item}-${i}`}
               id="mainImage"
               src={mainPicture}
               alt=""

@@ -11,13 +11,14 @@ import AfterLoginHeader from '@/components/header/AfterLoginHeader';
 import Cookies from 'js-cookie';
 interface LayoutProps {
   children?: ReactNode;
+  modal?: ReactNode;
 }
 
 function matchesDynamicPath(pathname: string, pattern: string): boolean {
   const regex = new RegExp('^' + pattern.replace(/\[.*?\]/g, '.*') + '$');
   return regex.test(pathname);
 }
-export default function Layout({ children }: LayoutProps) {
+export default function Layout({ children, modal }: LayoutProps) {
   const pathname = usePathname();
   const queryClient = new QueryClient();
   const isLoggedIn = Cookies.get('isLoggedIn') === 'true';
@@ -46,6 +47,7 @@ export default function Layout({ children }: LayoutProps) {
     <QueryClientProvider client={queryClient}>
       {headerComponent}
       <main>{children}</main>
+      {modal}
       <RemoteButton />
     </QueryClientProvider>
   );

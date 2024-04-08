@@ -19,12 +19,7 @@ const uploadArt = async (
   return response.data;
 };
 
-export function useUploadArt(): UseMutationResult<
-  any,
-  Error,
-  ArtData,
-  unknown
-> {
+export function useSaveArt(): UseMutationResult<any, Error, ArtData, unknown> {
   const { axiosInstance } = useAxios();
 
   const options: UseMutationOptions<any, Error, ArtData, unknown> = {

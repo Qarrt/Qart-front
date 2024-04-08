@@ -25,7 +25,7 @@ export default function SearchBar() {
           <img
             src="/svg/search.svg"
             alt="검색"
-            className="w-6 h-6 text-gray-600 ml-3 -mr-3 z-50"
+            className="w-6 h-6 text-gray-600 ml-3 -mr-3 z-30"
           />
         </button>
         <div className="w-inherit h-inherit">

@@ -15,7 +15,7 @@ export default function RemoteButton() {
       aria-label="Scroll to top"
     >
       <Image
-        src="/remote-button.svg"
+        src="/svg/remote-button.svg"
         alt="remote button"
         width={54}
         height={54}

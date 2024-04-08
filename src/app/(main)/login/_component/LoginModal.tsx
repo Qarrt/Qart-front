@@ -21,11 +21,11 @@ export default function LoginModal() {
   };
   return (
     <>
+      // 디자인 수정 필요
       <div
         className="flex fixed inset-0 bg-black bg-opacity-50 z-50"
         onClick={onBackdropClick}
       />
-
       <div className="flex w-[626px] h-[620px] absolute justify-center itmes-center top-0 left-0 right-0 bottom-0 bg-white justify-self-center mt-[100px] z-50 rounded-[20px]">
         <div className="flex mt-[20px] top-0 right-0 w-[24px] h-[24px] ml-4px cursor-pointer ml-[8px]">
           <svg

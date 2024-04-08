@@ -11,11 +11,11 @@ export default function RemoteButton() {
   return (
     <button
       onClick={scrollToTop}
-      className="fixed bottom-4 right-4 z-50 p-2 rounded-full cursor-pointer ease-in-out"
+      className="fixed bottom-4 right-4 z-40 p-2 rounded-full cursor-pointer ease-in-out"
       aria-label="Scroll to top"
     >
       <Image
-        src="/remote-button.svg"
+        src="/svg/remote-button.svg"
         alt="remote button"
         width={54}
         height={54}

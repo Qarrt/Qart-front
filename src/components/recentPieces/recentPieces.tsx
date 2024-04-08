@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 import newDisplayed1 from '/public/nowDisplayed1.png';
 import newDisplayed2 from '/public/nowDisplayed2.png';
@@ -43,14 +44,14 @@ export default function RecentPieces() {
     };
   }, []);
   const handleScroll = () => {
-    const recentPiece = document.getElementById('recentPiece');    
+    const recentPiece = document.getElementById('recentPiece');
     const clientWidth = recentPiece?.clientWidth;
     const slider = document.getElementById('middleSlider');
     slider?.addEventListener('wheel', (e) => {
       if (e.deltaY < 0 && clientWidth) {
-        slider.scrollLeft -= clientWidth*2;
+        slider.scrollLeft -= clientWidth * 2;
       } else if (e.deltaY > 0 && clientWidth) {
-        slider.scrollLeft += clientWidth*2;
+        slider.scrollLeft += clientWidth * 2;
       }
     });
   };

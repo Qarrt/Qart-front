@@ -1,16 +1,26 @@
-import { AxiosInstance } from 'axios';
 import { useAxios } from '@/lib/axios';
 import {
   UseMutationOptions,
   UseMutationResult,
   useMutation,
 } from '@tanstack/react-query';
-import { ArtData } from '@/types/Art';
+import { SaveArtData } from '@/types/Art';
 
-const uploadArt = async (
-  formData: FormData,
-  axiosInstance: AxiosInstance,
-): Promise<ArtData> => {
+const saveArt = async (artData: SaveArtData): Promise<SaveArtData> => {
+  const formData = new FormData();
+  const { axiosInstance } = useAxios();
+  formData.append('title', artData.title);
+  formData.append('exhibited', artData.exhibited.toString());
+
+  if (artData.material) formData.append('material', artData.material);
+  if (artData.year) formData.append('year', artData.year.toString());
+  if (artData.width) formData.append('width', artData.width.toString());
+  if (artData.height) formData.append('height', artData.height.toString());
+  if (artData.authorComment)
+    formData.append('authorComment', artData.authorComment);
+  if (artData.description) formData.append('description', artData.description);
+  if (artData.file) formData.append('file', artData.file);
+
   const response = await axiosInstance.post('/temp-pieces', formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -18,40 +28,23 @@ const uploadArt = async (
   });
   return response.data;
 };
+console.log('saveArt:', saveArt);
+export function useSaveArt(): UseMutationResult<
+  SaveArtData,
+  Error,
+  SaveArtData,
+  unknown
+> {
+  const options: UseMutationOptions<SaveArtData, Error, SaveArtData, unknown> =
+    {
+      mutationFn: (artData: SaveArtData) => saveArt(artData),
+      onError: (error: Error) => {
+        console.error('작품 저장 중 오류 발생:', error);
+      },
+      onSuccess: (data: SaveArtData) => {
+        console.log('작품이 성공적으로 저장되었습니다:', data);
+      },
+    };
 
-export function useSaveArt(): UseMutationResult<any, Error, ArtData, unknown> {
-  const { axiosInstance } = useAxios();
-
-  const options: UseMutationOptions<any, Error, ArtData, unknown> = {
-    mutationFn: (artData: ArtData) => {
-      const formData = new FormData();
-      formData.append('title', artData.title);
-      formData.append('exhibited', artData.exhibited.toString());
-
-      if (artData.material) {
-        formData.append('material', artData.material);
-      }
-      if (artData.year) {
-        formData.append('year', artData.year.toString());
-      }
-      if (artData.width) {
-        formData.append('width', artData.width.toString());
-      }
-      if (artData.height) {
-        formData.append('height', artData.height.toString());
-      }
-      if (artData.authorComment) {
-        formData.append('authorComment', artData.authorComment);
-      }
-      if (artData.description) {
-        formData.append('description', artData.description);
-      }
-      if (artData.file) {
-        formData.append('file', artData.file);
-      }
-
-      return uploadArt(formData, axiosInstance);
-    },
-  };
-  return useMutation<any, Error, ArtData, unknown>(options);
+  return useMutation<SaveArtData, Error, SaveArtData, unknown>(options);
 }

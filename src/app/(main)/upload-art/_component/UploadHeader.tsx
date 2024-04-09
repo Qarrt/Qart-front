@@ -1,11 +1,31 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-
+import { useSaveArt } from '@/hooks/useSaveArt';
+import useArtStore from '@/stores/useArtStore';
+import { useRouter } from 'next/navigation';
 export default function UploadHeader({
   onSubmit,
 }: {
   onSubmit: (e: React.FormEvent) => void;
 }) {
+  const router = useRouter();
+  const { artData } = useArtStore();
+  const { mutate: saveArt } = useSaveArt();
+  const handleSave = () => {
+    if (window.confirm('임시 저장하시겠습니까?')) {
+      saveArt(artData, {
+        onSuccess: () => {
+          alert('임시 저장에 성공하였습니다.');
+          router.push('/');
+        },
+        onError: () => {
+          alert('임시 저장에 실패하였습니다.');
+        },
+      });
+    }
+  };
+
   return (
     <>
       <header className="bg-white flex items-center h-[147px]">
@@ -22,13 +42,12 @@ export default function UploadHeader({
         </div>
 
         <div className="flex items-center gap-4 ml-auto mr-16 space-x-4">
-          <Link
-            href="/"
-            passHref
+          <button
             className="flex bg-white text-black rounded-full border-[1px] border-black py-2 px-4"
+            onClick={handleSave}
           >
             임시저장
-          </Link>
+          </button>
           <button
             onClick={onSubmit}
             className="flex px-4 py-2 text-white bg-black rounded-full"

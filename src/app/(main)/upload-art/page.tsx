@@ -3,24 +3,14 @@
 import '../../styles/globals.css';
 import Image from 'next/image';
 import ReactQuillTemplate from './_component/ReactQuillTemplate';
-import { useRef, useState } from 'react';
+import { useRef, useEffect } from 'react';
 import { useUploadArt } from '@/hooks/useUploadArt';
-import { ArtData } from '@/types/Art';
 import UploadHeader from './_component/UploadHeader';
 import { useRouter } from 'next/navigation';
-
+import useArtStore from '@/stores/useArtStore';
+import { useCheckArt } from '@/hooks/useCheckArt';
 export default function UploadArtPage() {
-  const [artData, setArtData] = useState<ArtData>({
-    title: '',
-    material: '',
-    year: 0,
-    width: 0,
-    height: 0,
-    exhibited: false,
-    authorComment: '',
-    description: '',
-    file: null,
-  });
+  const { artData, setArtData } = useArtStore();
   const router = useRouter();
   const uploadMutation = useUploadArt();
   const handleSubmit = async () => {
@@ -35,45 +25,28 @@ export default function UploadArtPage() {
     });
   };
   const handleArtistCommentChange = (content: string) => {
-    setArtData((prev) => ({
-      ...prev,
-      authorComment: content,
-    }));
+    setArtData({ authorComment: content });
   };
   const handleDescriptionChange = (content: string) => {
-    setArtData((prev) => ({
-      ...prev,
-      description: content,
-    }));
+    setArtData({ description: content });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
-    if (type === 'radio') {
-      setArtData((prev) => ({
-        ...prev,
-        [name]: value === 'true' ? true : false,
-      }));
-    } else {
-      setArtData((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-    }
+    const { name, value, type } = e.target;
+    setArtData({
+      [name]: type === 'radio' ? value === 'true' : value,
+    });
   };
   const fileInputRef = useRef<HTMLInputElement>(null);
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0];
-      setArtData({
-        ...artData,
-        file: file,
-      });
+      setArtData({ file: e.target.files[0] });
     }
   };
   const triggerFileInput = () => {
     fileInputRef.current?.click();
   };
+
   return (
     <>
       <UploadHeader onSubmit={() => handleSubmit()} />
@@ -199,7 +172,6 @@ export default function UploadArtPage() {
                       value="true"
                       className="sr-only radio peer"
                       onChange={handleChange}
-                      defaultChecked
                     />
                     <div className="w-[18px] h-[18px] bg-white border rounded-full peer-checked:border-[3px] peer-checked:bg-black"></div>
                     <span className="ml-[12px] text-[#595959]">전시중</span>
@@ -211,6 +183,7 @@ export default function UploadArtPage() {
                       value="false"
                       className="sr-only radio peer"
                       onChange={handleChange}
+                      defaultChecked
                     />
                     <div className="w-[18px] h-[18px] bg-white border rounded-full peer-checked:border-[3px] peer-checked:bg-black"></div>
                     <span className="ml-[12px] text-[#595959]">해당 없음</span>

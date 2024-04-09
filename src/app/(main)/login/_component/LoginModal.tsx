@@ -21,7 +21,7 @@ export default function LoginModal() {
   };
   return (
     <>
-      // 디자인 수정 필요
+      {/* 디자인 수정 필요 */}
       <div
         className="flex fixed inset-0 bg-black bg-opacity-50 z-50"
         onClick={onBackdropClick}
@@ -56,7 +56,7 @@ export default function LoginModal() {
           <div className="mt-[49px] flex flex-row w-[377px] h-[62px] bg-[#FAE64D] rounded-lg -ml-[20px]">
             <a
               className="flex"
-              href={`https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.KAKAO_CLIENT_ID}&redirect_uri=${process.env.BACKEND_URL}/auth/kakao`}
+              href={`https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_KAKAO_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/kakao`}
             >
               <div className="flex items-center ml-[11px]">
                 <Image
@@ -75,7 +75,7 @@ export default function LoginModal() {
           <div className="mt-[24px] flex flex-row w-[377px] h-[62px] bg-[#5AC451] rounded-lg -ml-[20px]">
             <a
               className="flex"
-              href={`https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${process.env.NAVER_CLIENT_ID}&state=STATE_STRING&redirect_uri=${process.env.BACKEND_URL}/auth/naver`}
+              href={`https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_NAVER_CLIENT_ID}&state=STATE_STRING&redirect_uri=${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/naver`}
             >
               <div className="flex items-center ml-[16px]">
                 <Image
@@ -94,7 +94,7 @@ export default function LoginModal() {
           <div className="mt-[24px] flex flex-row w-[377px] h-[62px] border-[#9E9E9E] rounded-lg -ml-[20px] border-2">
             <a
               className="flex"
-              href={`https://accounts.google.com/o/oauth2/auth?client_id=${process.env.GOOGLE_CLIENT_ID}&redirect_uri=${process.env.BACKEND_URL}/auth/google&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email`}
+              href={`https://accounts.google.com/o/oauth2/auth?client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/google&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email`}
             >
               <div className="flex items-center ml-[16px]">
                 <Image

@@ -8,11 +8,17 @@ import { useUploadArt } from '@/hooks/useUploadArt';
 import UploadHeader from './_component/UploadHeader';
 import { useRouter } from 'next/navigation';
 import useArtStore from '@/stores/useArtStore';
-import { useCheckArt } from '@/hooks/useCheckArt';
+import { useCheckArt } from '@/hooks/useCheckAllArt';
+
+import Client from '@/components/_components/Client';
+
 export default function UploadArtPage() {
   const { artData, setArtData } = useArtStore();
   const router = useRouter();
+  const { data: checkArtData, isSuccess } = useCheckArt(); // 데이터 확인을 위한 임시 코드
+
   const uploadMutation = useUploadArt();
+
   const handleSubmit = async () => {
     uploadMutation.mutate(artData, {
       onSuccess: () => {
@@ -24,6 +30,12 @@ export default function UploadArtPage() {
       },
     });
   };
+  useEffect(() => {
+    //데이터 확인을 위한 임시코드
+    if (isSuccess) {
+      console.log(checkArtData);
+    }
+  }, [checkArtData, isSuccess]);
   const handleArtistCommentChange = (content: string) => {
     setArtData({ authorComment: content });
   };
@@ -195,22 +207,27 @@ export default function UploadArtPage() {
         </div>
         <div className="ml-[200px] mt-[46px]">
           <p className="text-[30px] leading-[45px] font-bold">작가 한마디</p>
-          <ReactQuillTemplate
-            value={artData.authorComment}
-            height="400px"
-            placeholder="작품의 작가로서 관람객에게 전하고 싶은 한마디"
-            onChange={handleArtistCommentChange}
-          />
+          <Client>
+            <ReactQuillTemplate
+              value={artData.authorComment}
+              height="400px"
+              placeholder="작품의 작가로서 관람객에게 전하고 싶은 한마디"
+              onChange={handleArtistCommentChange}
+            />
+          </Client>
         </div>
+
         <div className="ml-[200px] mt-[150px]">
           {/* margin-top 150px 임의로 해놓음 위에 박스를 침범해서 px값을 수정해야함 */}
           <p className="text-[30px] leading-[45px] font-bold">작품 설명</p>
-          <ReactQuillTemplate
-            value={artData.description}
-            height="600px"
-            placeholder="관람객들이 작품을 감상할 때 참고할 수 있도록 작품의 상세 정보를 작성해주세요!"
-            onChange={handleDescriptionChange}
-          />
+          <Client>
+            <ReactQuillTemplate
+              value={artData.description}
+              height="600px"
+              placeholder="관람객들이 작품을 감상할 때 참고할 수 있도록 작품의 상세 정보를 작성해주세요!"
+              onChange={handleDescriptionChange}
+            />
+          </Client>
         </div>
       </form>
     </>

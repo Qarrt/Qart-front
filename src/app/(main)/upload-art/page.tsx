@@ -3,22 +3,20 @@
 import '../../styles/globals.css';
 import Image from 'next/image';
 import ReactQuillTemplate from './_component/ReactQuillTemplate';
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import { useUploadArt } from '@/hooks/useUploadArt';
 import UploadHeader from './_component/UploadHeader';
 import { useRouter } from 'next/navigation';
 import useArtStore from '@/stores/useArtStore';
-import { useCheckArt } from '@/hooks/useCheckAllArt';
-
 import Client from '@/components/_components/Client';
+import { useCheckMyArtList } from '@/hooks/useMyArtList';
+import { ArtData } from '@/types/Art';
 
 export default function UploadArtPage() {
   const { artData, setArtData } = useArtStore();
   const router = useRouter();
-  const { data: checkArtData, isSuccess } = useCheckArt(); // 데이터 확인을 위한 임시 코드
-
   const uploadMutation = useUploadArt();
-
+  const { data: myArtList } = useCheckMyArtList();
   const handleSubmit = async () => {
     uploadMutation.mutate(artData, {
       onSuccess: () => {
@@ -30,12 +28,13 @@ export default function UploadArtPage() {
       },
     });
   };
-  useEffect(() => {
-    //데이터 확인을 위한 임시코드
-    if (isSuccess) {
-      console.log(checkArtData);
-    }
-  }, [checkArtData, isSuccess]);
+
+  // 내가 등록한 작품 확인 훅 테스트용 함수
+  const handleMyArtList = () => {
+    myArtList.map((art: ArtData) => {
+      console.log(art);
+    });
+  };
   const handleArtistCommentChange = (content: string) => {
     setArtData({ authorComment: content });
   };
@@ -62,6 +61,12 @@ export default function UploadArtPage() {
   return (
     <>
       <UploadHeader onSubmit={() => handleSubmit()} />
+      {/* 내 등록한 작품조회 훅 테스트용 버튼 */}
+      {myArtList && (
+        <button onClick={handleMyArtList}>
+          내가 등록한 작품 확인{myArtList.length}개
+        </button>
+      )}
       <h2 className="flex justify-center mt-[89px] text-3xl font-bold">
         작품 등록
       </h2>

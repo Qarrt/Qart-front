@@ -3,26 +3,20 @@
 import '../../styles/globals.css';
 import Image from 'next/image';
 import ReactQuillTemplate from './_component/ReactQuillTemplate';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { useUploadArt } from '@/hooks/useUploadArt';
-import { ArtData } from '@/types/Art';
 import UploadHeader from './_component/UploadHeader';
 import { useRouter } from 'next/navigation';
+import useArtStore from '@/stores/useArtStore';
+import Client from '@/components/_components/Client';
+import { useCheckMyArtList } from '@/hooks/useMyArtList';
+import { ArtData } from '@/types/Art';
 
 export default function UploadArtPage() {
-  const [artData, setArtData] = useState<ArtData>({
-    title: '',
-    material: '',
-    year: 0,
-    width: 0,
-    height: 0,
-    exhibited: false,
-    authorComment: '',
-    description: '',
-    file: null,
-  });
+  const { artData, setArtData } = useArtStore();
   const router = useRouter();
   const uploadMutation = useUploadArt();
+  const { data: myArtList } = useCheckMyArtList();
   const handleSubmit = async () => {
     uploadMutation.mutate(artData, {
       onSuccess: () => {
@@ -34,49 +28,45 @@ export default function UploadArtPage() {
       },
     });
   };
+
+  // 내가 등록한 작품 확인 훅 테스트용 함수
+  const handleMyArtList = () => {
+    myArtList.map((art: ArtData) => {
+      console.log(art);
+    });
+  };
   const handleArtistCommentChange = (content: string) => {
-    setArtData((prev) => ({
-      ...prev,
-      authorComment: content,
-    }));
+    setArtData({ authorComment: content });
   };
   const handleDescriptionChange = (content: string) => {
-    setArtData((prev) => ({
-      ...prev,
-      description: content,
-    }));
+    setArtData({ description: content });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
-    if (type === 'radio') {
-      setArtData((prev) => ({
-        ...prev,
-        [name]: value === 'true' ? true : false,
-      }));
-    } else {
-      setArtData((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-    }
+    const { name, value, type } = e.target;
+    setArtData({
+      [name]: type === 'radio' ? value === 'true' : value,
+    });
   };
   const fileInputRef = useRef<HTMLInputElement>(null);
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0];
-      setArtData({
-        ...artData,
-        file: file,
-      });
+      setArtData({ file: e.target.files[0] });
     }
   };
   const triggerFileInput = () => {
     fileInputRef.current?.click();
   };
+
   return (
     <>
       <UploadHeader onSubmit={() => handleSubmit()} />
+      {/* 내 등록한 작품조회 훅 테스트용 버튼 */}
+      {myArtList && (
+        <button onClick={handleMyArtList}>
+          내가 등록한 작품 확인{myArtList.length}개
+        </button>
+      )}
       <h2 className="flex justify-center mt-[89px] text-3xl font-bold">
         작품 등록
       </h2>
@@ -199,7 +189,6 @@ export default function UploadArtPage() {
                       value="true"
                       className="sr-only radio peer"
                       onChange={handleChange}
-                      defaultChecked
                     />
                     <div className="w-[18px] h-[18px] bg-white border rounded-full peer-checked:border-[3px] peer-checked:bg-black"></div>
                     <span className="ml-[12px] text-[#595959]">전시중</span>
@@ -211,6 +200,7 @@ export default function UploadArtPage() {
                       value="false"
                       className="sr-only radio peer"
                       onChange={handleChange}
+                      defaultChecked
                     />
                     <div className="w-[18px] h-[18px] bg-white border rounded-full peer-checked:border-[3px] peer-checked:bg-black"></div>
                     <span className="ml-[12px] text-[#595959]">해당 없음</span>
@@ -222,22 +212,27 @@ export default function UploadArtPage() {
         </div>
         <div className="ml-[200px] mt-[46px]">
           <p className="text-[30px] leading-[45px] font-bold">작가 한마디</p>
-          <ReactQuillTemplate
-            value={artData.authorComment}
-            height="400px"
-            placeholder="작품의 작가로서 관람객에게 전하고 싶은 한마디"
-            onChange={handleArtistCommentChange}
-          />
+          <Client>
+            <ReactQuillTemplate
+              value={artData.authorComment}
+              height="400px"
+              placeholder="작품의 작가로서 관람객에게 전하고 싶은 한마디"
+              onChange={handleArtistCommentChange}
+            />
+          </Client>
         </div>
+
         <div className="ml-[200px] mt-[150px]">
           {/* margin-top 150px 임의로 해놓음 위에 박스를 침범해서 px값을 수정해야함 */}
           <p className="text-[30px] leading-[45px] font-bold">작품 설명</p>
-          <ReactQuillTemplate
-            value={artData.description}
-            height="600px"
-            placeholder="관람객들이 작품을 감상할 때 참고할 수 있도록 작품의 상세 정보를 작성해주세요!"
-            onChange={handleDescriptionChange}
-          />
+          <Client>
+            <ReactQuillTemplate
+              value={artData.description}
+              height="600px"
+              placeholder="관람객들이 작품을 감상할 때 참고할 수 있도록 작품의 상세 정보를 작성해주세요!"
+              onChange={handleDescriptionChange}
+            />
+          </Client>
         </div>
       </form>
     </>

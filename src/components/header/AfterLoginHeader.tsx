@@ -51,7 +51,12 @@ export default function AfterLoginHeader() {
           onClick={toggleDropdown}
           className="relative z-10"
         >
-          <Image src="/userIcon.svg" alt="userIcon" width={46} height={46} />
+          <Image
+            src="/svg/userIcon.svg"
+            alt="userIcon"
+            width={46}
+            height={46}
+          />
         </button>
         {dropdownVisible && (
           <UserIconDropdown

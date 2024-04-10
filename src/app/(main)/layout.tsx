@@ -6,7 +6,7 @@ import pagesConfig from '@/constants/pagesConfig';
 import { usePathname } from 'next/navigation';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import RemoteButton from '@/components/_components/RemoteButton';
-
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import AfterLoginHeader from '@/components/header/AfterLoginHeader';
 import Cookies from 'js-cookie';
 interface LayoutProps {
@@ -49,6 +49,7 @@ export default function Layout({ children, modal }: LayoutProps) {
       <main>{children}</main>
       {modal}
       <RemoteButton />
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }

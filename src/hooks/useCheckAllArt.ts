@@ -1,14 +1,13 @@
 import { useAxios } from '@/lib/axios';
 import { useQuery } from '@tanstack/react-query';
 
-export const useCheckArt = (artPieceId: string) => {
+export const useCheckArt = () => {
   const { axiosInstance } = useAxios();
   return useQuery({
-    queryKey: ['checkArt', artPieceId],
+    queryKey: ['checkArt'],
     queryFn: async () => {
-      const response = await axiosInstance.get(`/temp-pieces/${artPieceId}`);
+      const response = await axiosInstance.get('/temp-pieces/');
       return response.data;
     },
-    enabled: !!artPieceId,
   });
 };

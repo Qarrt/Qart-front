@@ -11,7 +11,9 @@ const saveArt = async (artData: SaveArtData): Promise<SaveArtData> => {
   const { axiosInstance } = useAxios();
   formData.append('title', artData.title);
   formData.append('exhibited', artData.exhibited.toString());
-
+  if (artData.title === '') {
+    throw new Error('작품 제목을 입력해주세요.');
+  }
   if (artData.material) formData.append('material', artData.material);
   if (artData.year) formData.append('year', artData.year.toString());
   if (artData.width) formData.append('width', artData.width.toString());
@@ -28,7 +30,6 @@ const saveArt = async (artData: SaveArtData): Promise<SaveArtData> => {
   });
   return response.data;
 };
-console.log('saveArt:', saveArt);
 export function useSaveArt(): UseMutationResult<
   SaveArtData,
   Error,

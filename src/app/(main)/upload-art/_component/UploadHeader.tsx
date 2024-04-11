@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSaveArt } from '@/hooks/useSaveArt';
+import { useSaveArt } from '@/hooks/usePostSaveArt';
 import useArtStore from '@/stores/useArtStore';
 import { useRouter } from 'next/navigation';
 export default function UploadHeader({

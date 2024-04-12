@@ -9,6 +9,7 @@ import RemoteButton from '@/components/_components/RemoteButton';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import AfterLoginHeader from '@/components/header/AfterLoginHeader';
 import Cookies from 'js-cookie';
+import Client from '@/components/_components/Client';
 interface LayoutProps {
   children?: ReactNode;
   modal?: ReactNode;
@@ -45,7 +46,7 @@ export default function Layout({ children, modal }: LayoutProps) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {headerComponent}
+      <Client>{headerComponent}</Client>
       <main>{children}</main>
       {modal}
       <RemoteButton />

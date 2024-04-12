@@ -2,8 +2,6 @@ import Link from 'next/link';
 import { forwardRef, ForwardedRef, useCallback } from 'react';
 import { useAxios } from '@/lib/axios';
 
-// 로그아웃 시 토큰이 사라지는데 소셜로그인을 다시 시도하면 인증이 없이 다시 로그인이 됨
-//소셜로그인측에서 로그인을 또 따로 진행해야한다고 하는 것 같은데 일단 알아보고 수정예정
 const UserIconDropdown = forwardRef<HTMLDivElement, { className?: string }>(
   ({ className }, ref: ForwardedRef<HTMLDivElement>) => {
     const combinedClassName = `absolute right-0 z-10 mt-2 w-[200px] origin-top-right rounded-[12px] bg-white shadow-lg ring-2 ring-black ring-opacity-5 focus:outline-none top-[100px]${
@@ -18,7 +16,7 @@ const UserIconDropdown = forwardRef<HTMLDivElement, { className?: string }>(
             'Content-Type': 'application/json',
           },
         });
-        console.log('서버 로그아웃 성공:', serverLogoutResponse.data);
+        console.log('로그아웃 성공:', serverLogoutResponse.data);
         if (
           window.Kakao &&
           window.Kakao.isInitialized() &&
@@ -45,7 +43,7 @@ const UserIconDropdown = forwardRef<HTMLDivElement, { className?: string }>(
       >
         <div className="py-1" role="none">
           <Link
-            href="#"
+            href="/my-page"
             className="text-[#595959] block px-4 py-2 text-[16px]"
             role="menuitem"
             tabIndex={-1}

@@ -1,12 +1,12 @@
 'use client';
-import newDisplayed2 from '/public/nowDisplayed2.png';
-import position_icon from '/public/position_icon.png';
+
 import Image from 'next/image';
 import { useCheckMyArtList } from '@/hooks/useGetMyArtList';
 import { ArtData } from '@/types/Art';
 
 export default function MyPage() {
   const { data: myArtList } = useCheckMyArtList();
+
   return (
     <>
       <div className="flex justify-center mt-[50px]">

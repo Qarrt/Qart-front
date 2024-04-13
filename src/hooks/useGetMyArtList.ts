@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { AxiosInstance } from 'axios';
 
 const checkMyArtList = async (axiosInstance: AxiosInstance) => {
-  const response = await axiosInstance.get('/pieces');
+  const response = await axiosInstance.get('/pieces/my');
   console.log(response.data);
   return response.data;
 };
@@ -11,7 +11,7 @@ const checkMyArtList = async (axiosInstance: AxiosInstance) => {
 export function useCheckMyArtList() {
   const { axiosInstance } = useAxios();
   return useQuery({
-    queryKey: ['checkMyArtList'],
+    queryKey: ['checkMyAllArtList'],
     queryFn: () => checkMyArtList(axiosInstance),
   });
 }

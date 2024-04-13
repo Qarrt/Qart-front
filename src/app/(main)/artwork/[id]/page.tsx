@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Tab from '../_component/Tab';
 import ArtworkTab from '../_component/ArtworkTab';
-import Layout from '../../layout';
 
 export default function ArtworkPage() {
   return (

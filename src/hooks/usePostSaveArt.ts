@@ -6,7 +6,7 @@ import {
 } from '@tanstack/react-query';
 import { SaveArtData } from '@/types/Art';
 
-const saveArt = async (artData: SaveArtData): Promise<SaveArtData> => {
+const postSaveArt = async (artData: SaveArtData): Promise<SaveArtData> => {
   const formData = new FormData();
   const { axiosInstance } = useAxios();
   formData.append('title', artData.title);
@@ -30,7 +30,7 @@ const saveArt = async (artData: SaveArtData): Promise<SaveArtData> => {
   });
   return response.data;
 };
-export function useSaveArt(): UseMutationResult<
+export function usePostSaveArt(): UseMutationResult<
   SaveArtData,
   Error,
   SaveArtData,
@@ -38,7 +38,7 @@ export function useSaveArt(): UseMutationResult<
 > {
   const options: UseMutationOptions<SaveArtData, Error, SaveArtData, unknown> =
     {
-      mutationFn: (artData: SaveArtData) => saveArt(artData),
+      mutationFn: (artData: SaveArtData) => postSaveArt(artData),
       onError: (error: Error) => {
         console.error('작품 저장 중 오류 발생:', error);
       },

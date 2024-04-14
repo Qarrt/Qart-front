@@ -4,7 +4,7 @@ import '../../styles/globals.css';
 import Image from 'next/image';
 import ReactQuillTemplate from './_component/ReactQuillTemplate';
 import { useRef } from 'react';
-import { useUploadArt } from '@/hooks/usePostUploadArt';
+import { usePostUploadArt } from '@/hooks/usePostUploadArt';
 import UploadHeader from './_component/UploadHeader';
 import { useRouter } from 'next/navigation';
 import useArtStore from '@/stores/useArtStore';
@@ -13,7 +13,7 @@ import Client from '@/components/_components/Client';
 export default function UploadArtPage() {
   const { artData, setArtData } = useArtStore();
   const router = useRouter();
-  const uploadMutation = useUploadArt();
+  const uploadMutation = usePostUploadArt();
   const handleSubmit = async () => {
     uploadMutation.mutate(artData, {
       onSuccess: () => {
@@ -52,7 +52,6 @@ export default function UploadArtPage() {
   return (
     <>
       <UploadHeader onSubmit={() => handleSubmit()} />
-      {/* 내 등록한 작품조회 훅 테스트용 버튼 */}
       <h2 className="flex justify-center mt-[89px] text-3xl font-bold">
         작품 등록
       </h2>

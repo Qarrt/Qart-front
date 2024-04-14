@@ -52,7 +52,7 @@ const UserIconDropdown = forwardRef<HTMLDivElement, { className?: string }>(
             마이페이지
           </Link>
           <Link
-            href="#"
+            href="my-collection"
             className="text-[#595959] block px-4 py-2 text-[16px]"
             role="menuitem"
             tabIndex={-1}

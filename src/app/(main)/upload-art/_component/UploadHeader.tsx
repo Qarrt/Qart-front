@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSaveArt } from '@/hooks/usePostSaveArt';
+import { usePostSaveArt } from '@/hooks/usePostSaveArt';
 import useArtStore from '@/stores/useArtStore';
 import { useRouter } from 'next/navigation';
 export default function UploadHeader({
@@ -11,7 +11,7 @@ export default function UploadHeader({
 }) {
   const router = useRouter();
   const { artData } = useArtStore();
-  const { mutate: saveArt } = useSaveArt();
+  const { mutate: saveArt } = usePostSaveArt();
   const handleSave = () => {
     if (window.confirm('임시 저장하시겠습니까?')) {
       saveArt(artData, {

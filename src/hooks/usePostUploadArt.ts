@@ -7,7 +7,7 @@ import {
 } from '@tanstack/react-query';
 import { ArtData } from '@/types/Art';
 
-const uploadArt = async (
+const postUploadArt = async (
   formData: FormData,
   axiosInstance: AxiosInstance,
 ): Promise<ArtData> => {
@@ -19,7 +19,7 @@ const uploadArt = async (
   return response.data;
 };
 
-export function useUploadArt(): UseMutationResult<
+export function usePostUploadArt(): UseMutationResult<
   any,
   Error,
   ArtData,
@@ -43,7 +43,7 @@ export function useUploadArt(): UseMutationResult<
         formData.append('file', artData.file);
       }
 
-      return uploadArt(formData, axiosInstance);
+      return postUploadArt(formData, axiosInstance);
     },
   };
   return useMutation<any, Error, ArtData, unknown>(options);

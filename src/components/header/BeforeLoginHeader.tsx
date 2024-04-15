@@ -9,7 +9,7 @@ export default function BeforeLoginHeader() {
       <div className="flex items-center space-x-10 font-semibold ml-9">
         <Link href="/">
           <Image
-            src="/큐아트 로고.png"
+            src="/img/큐아트 로고.png"
             alt="큐아트 로고"
             width={86}
             height={35}

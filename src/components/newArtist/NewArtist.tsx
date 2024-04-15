@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import newArtist1 from '/public/newArtist1.png';
-import newArtist2 from '/public/newArtist2.png';
-import newArtist3 from '/public/newArtist3.png';
+import newArtist1 from '/public/img/newArtist1.png';
+import newArtist2 from '/public/img/newArtist2.png';
+import newArtist3 from '/public/img/newArtist3.png';
 
 export default function NewArtist() {
   let newPainterArr = [

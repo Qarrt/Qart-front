@@ -1,30 +1,39 @@
 'use client';
 import { throttle } from 'lodash';
 import Image from 'next/image';
-import mainPicture from '/public/mainPicture.png';
+import { useEffect, useRef } from 'react';
 
 export default function MainImage() {
-  let mainImages = [1, 2, 3, 4];
+  let mainImages = [
+    '/img/main-banner1.png',
+    '/img/main-banner1.png',
+    '/img/main-banner1.png',
+  ];
+  const sliderRef = useRef(null);
 
   const nextButton = throttle(function () {
-    const mainImage = document.getElementById('mainImage');
     const slider = document.getElementById('slider');
-    const mainImageWidth = mainImage!.clientWidth;
-    slider!.scrollLeft += Math.floor(mainImageWidth * mainImages.length) / 4;
+    const slideWidth = slider!.scrollWidth / mainImages.length;
+    slider!.scrollLeft += slideWidth;
+    if (slider!.scrollLeft === slider!.scrollWidth - slideWidth) {
+      slider!.scrollLeft = 0;
+    }
   }, 1000);
 
   const prevButton = throttle(function () {
-    const mainImage = document.getElementById('mainImage');
     const slider = document.getElementById('slider');
-    const mainImageWidth = mainImage!.clientWidth;
-    slider!.scrollLeft -= Math.floor(mainImageWidth * mainImages.length) / 4;
+    const slideWidth = slider!.scrollWidth / mainImages.length;
+    slider!.scrollLeft -= slideWidth;
   }, 1000);
-
+  useEffect(() => {
+    const interval = setInterval(nextButton, 5000);
+    return () => clearInterval(interval);
+  }, []);
   return (
     <>
       <div className="relative flex items-center justify-center pl-16 mt-20">
         <button
-          className="size-[41px] flex justify-center items-center rounded-full bg-[#222222] opacity-30 cursor-pointer absolute left-[99px]"
+          className="size-[41px] flex justify-center items-center rounded-full bg-[#222222] opacity-30 cursor-pointer absolute left-[115px]"
           onClick={prevButton}
         >
           <svg
@@ -46,15 +55,15 @@ export default function MainImage() {
           id="slider"
           className="flex w-full h-full scroll overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide"
         >
-          {mainImages.map((item, i) => (
+          {mainImages.map((imgSrc, i) => (
             <Image
-              key={`${item}-${i}`}
-              id="mainImage"
-              src={mainPicture}
-              alt=""
+              key={`${i}`}
+              src={imgSrc}
+              alt="banner"
               width={1440}
               height={404}
-              className="pr-10 "
+              ref={sliderRef}
+              className="inline-block pr-10 "
             />
           ))}
         </div>

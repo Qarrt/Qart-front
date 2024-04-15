@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import BottomNavImage from '/public/BottomNavImage.png';
+import BottomNavImage from '/public/img/BottomNavImage.png';
 
 export default function RecentlyHot() {
   let bottomNavImages = [

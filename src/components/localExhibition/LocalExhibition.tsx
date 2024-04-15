@@ -1,6 +1,6 @@
-import local_exhibition2 from '/public/local_exhibition2.png';
-import local_exhibition3 from '/public/local_exhibition3.png';
-import local_exhibition4 from '/public/local_exhibition4.png';
+import local_exhibition2 from '/public/img/local_exhibition2.png';
+import local_exhibition3 from '/public/img/local_exhibition3.png';
+import local_exhibition4 from '/public/img/local_exhibition4.png';
 import Image from 'next/image';
 import Link from 'next/link';
 

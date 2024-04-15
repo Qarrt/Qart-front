@@ -43,7 +43,7 @@ export default function LoginModal() {
         </div>
         <div className="flex flex-col items-center justify-center mt-[10px] ml-auto mr-auto">
           <Image
-            src="/큐아트 로고.png"
+            src="/img/큐아트 로고.png"
             alt="logo"
             width={200}
             height={200}

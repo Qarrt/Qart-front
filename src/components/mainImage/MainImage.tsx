@@ -1,23 +1,24 @@
 'use client';
 import { throttle } from 'lodash';
 import Image from 'next/image';
-import mainPicture from '/public/mainPicture.png';
 
 export default function MainImage() {
-  let mainImages = [1, 2, 3, 4];
+  let mainImages = [
+    '/img/main-banner1.png',
+    '/img/main-banner2.jpg',
+    '/img/main-banner3.jpg',
+  ];
 
   const nextButton = throttle(function () {
-    const mainImage = document.getElementById('mainImage');
     const slider = document.getElementById('slider');
-    const mainImageWidth = mainImage!.clientWidth;
-    slider!.scrollLeft += Math.floor(mainImageWidth * mainImages.length) / 4;
+    const slideWidth = slider!.scrollWidth / mainImages.length;
+    slider!.scrollLeft += slideWidth;
   }, 1000);
 
   const prevButton = throttle(function () {
-    const mainImage = document.getElementById('mainImage');
     const slider = document.getElementById('slider');
-    const mainImageWidth = mainImage!.clientWidth;
-    slider!.scrollLeft -= Math.floor(mainImageWidth * mainImages.length) / 4;
+    const slideWidth = slider!.scrollWidth / mainImages.length;
+    slider!.scrollLeft += slideWidth;
   }, 1000);
 
   return (
@@ -49,12 +50,11 @@ export default function MainImage() {
           {mainImages.map((item, i) => (
             <Image
               key={`${item}-${i}`}
-              id="mainImage"
-              src={mainPicture}
-              alt=""
+              src="/img/main-banner.png"
+              alt="banner"
               width={1440}
               height={404}
-              className="pr-10 "
+              className="inline-block pr-10 "
             />
           ))}
         </div>

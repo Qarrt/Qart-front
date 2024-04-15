@@ -1,5 +1,5 @@
-import Image from "next/image";
-import qr_image from '/public/qr_image.png';
+import Image from 'next/image';
+import qr_image from '/public/img/qr_image.png';
 
 export default function MiddleAdBanner() {
   return (

@@ -9,7 +9,7 @@ export default function ArtworkPage() {
         작품 감상하기
       </div>
       <div className="flex items-center justify-center mt-16">
-        <Image src="/artA.png" alt="artA" width={395} height={395} />
+        <Image src="/img/artA.png" alt="artA" width={395} height={395} />
       </div>
       <div className="flex justify-center mt-16">
         <div className="flex flex-col">

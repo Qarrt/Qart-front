@@ -1,10 +1,10 @@
 'use client';
 import Link from 'next/link';
-import newDisplayed1 from '/public/nowDisplayed1.png';
-import newDisplayed2 from '/public/nowDisplayed2.png';
-import newDisplayed3 from '/public/nowDisplayed3.png';
-import newDisplayed4 from '/public/nowDisplayed4.png';
-import position_icon from '/public/position_icon.png';
+import newDisplayed1 from '/public/img/nowDisplayed1.png';
+import newDisplayed2 from '/public/img/nowDisplayed2.png';
+import newDisplayed3 from '/public/img/nowDisplayed3.png';
+import newDisplayed4 from '/public/img/nowDisplayed4.png';
+import position_icon from '/public/img/position_icon.png';
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 

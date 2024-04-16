@@ -4,7 +4,6 @@ import { AxiosInstance } from 'axios';
 
 const getCheckMyArtList = async (axiosInstance: AxiosInstance) => {
   const response = await axiosInstance.get('/pieces/my');
-  console.log(response.data);
   return response.data;
 };
 

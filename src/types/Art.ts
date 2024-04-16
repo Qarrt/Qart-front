@@ -10,6 +10,13 @@ export interface ArtData {
   description: string;
   file?: File | null | undefined;
   image?: string;
+  id?: string | null | undefined;
+  user: {
+    name: string;
+    email?: string;
+    id: string;
+    image?: string;
+  };
 }
 
 export interface SaveArtData {
@@ -23,5 +30,5 @@ export interface SaveArtData {
   authorComment?: string;
   description?: string;
   file?: File | null | undefined;
-  image?: string;
+  image?: string | null | undefined;
 }
